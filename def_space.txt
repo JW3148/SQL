@@ -1,0 +1,19 @@
+database space = data file size + log file size
+data file size = reserved space + un-allocated space(extents that haven't been touched)
+reserved space = data size + index size + unused
+
+un-allocatied space = extents that haven't been allocated
+un-used = empty page on allocated extents
+reserved = allocated
+reserved space = acturial data space to look at
+db size = total space claimed for os
+
+
+shrink DB is to reclaim space from os, space affected is un-allocated part
+
+---------------------------->total space
+----------------------->data file space
+----------------->reserved
+------>---------->data+index
+
+
