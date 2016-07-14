@@ -1,0 +1,21 @@
+--compression
+two types
+
+a. row level:
+   -turning fixed length data to variable length, like decimal(38,2)
+   -more rows can fit to a single page
+b. page level
+   -can page by page?
+   -start with row-level data compression
+   -two features: prefix and dictionary
+   -prefix compression: repeating patterns of data at the beginning of the values of a columns
+    are removed, substuted with an abbreviated reference, mapping is stored in a structure that 
+    follows the page header of the data page. it affects a particular column
+   -dictionary compression: search for repeated values anywhere on a page, stores them in the 
+    mapping structure(compress information). it affects a data page
+
+CPU vs I/O trade off
+
+Syntax
+ALTER TABLE dbo.mytable REBUILD PARTITION = ALL WITH (DATA_COMPRESSION = PAGE)
+ALTER INDEX IX_A ON dbo.mytable REBUILD WITH (DATA_COMPRESSION = PAGE)

@@ -1,0 +1,13 @@
+Batch
+- A group of one or more SQL statement
+- Send at the same time to SQL server for execution
+- SQL server compiles a batch into a single execution unit - Execution Plan
+- Statements in the execution plan are executed one at a time
+
+
+A compile error, such as a syntax error, prevents the compilation of the execution plan. Therefore, no statements in the batch are executed.
+A run-time error, such as an arithmetic overflow or a constraint violation, has one of the following effects:
+Most run-time errors stop the current statement and the statements that follow it in the batch.
+Some run-time errors, such as constraint violations, stop only the current statement. All the remaining statements in the batch are executed.
+The statements that are executed before the statement that encountered the run-time error are not affected. The only exception is when the batch is in a transaction and the error causes the transaction to be rolled back. In this case, any uncommitted data modifications that are made before the run-time error are rolled back.
+For example, assume there are 10 statements in a batch. If the fifth statement has a syntax error, no statements in the batch are executed. If the batch is compiled and the second statement then fails while running, the results of the first statement are not affected because it has already executed.
