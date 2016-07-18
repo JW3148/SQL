@@ -1,0 +1,18 @@
+stored procedure vs. function
+a. permanent environment change
+Function can not do dml to a permananttable
+but stored procedure can
+b. input and output, parameters
+function must have a input parameter and return a vaue(can be a scalar or result set)
+sps don't have to take a parameter and don't not have a particular output
+c. transactions
+function don't not use transactions
+d. call from each other
+e. usage in select/where/having
+Sproc can't do this
+f. Try Catch block 
+function can't do this
+g. Temp table
+function dont support temptable
+h.dynamic sql
+function don't support dynamic sql
