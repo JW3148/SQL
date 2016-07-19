@@ -1,0 +1,3 @@
+a. use raise error to return error to calling applicaiton
+b. continue the process when part of the fails
+c. customize error
