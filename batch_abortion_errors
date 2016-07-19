@@ -1,0 +1,8 @@
+From Erland Sommarskog's site
+
+a. Most conversion errors, for instance conversion of non-numeric string to a numeric value
+b. Superfluous parameter to a parameterless stored procedure.
+c. Exceeding the maximum nesting-level of stored procedures, triggers and functions.
+d. Being selected as a deadlock victim.
+f. Mismatch in number of columns in INSERT-EXEC.
+g. Running out of space for data file or transaction log.
