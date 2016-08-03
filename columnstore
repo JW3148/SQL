@@ -1,0 +1,51 @@
+
+columnstore
+
+two new features
+a. store data by column  --> I/O savings
+b. compression --> I/O savings
+c. batch mode
+
+
+
+typical BI query
+-fact join dimenstion, filter and group by a catetorical dimension column, aggregate some measure in fact table
+-dwh table usually have many columns, i.e. it is de-normalized
+-most query select only a small subset of columns
+-not very selective in where clause. i.e. the purpose the aggregation
+
+in reporting and analytical processing, the typical query looks much different. In a data warehouse (DW), most tables have dozens of columns (at least), and most queries select only a few of those columns – forcing SQL Server to process the pages that contain not only the three columns you need, but also all of the other columns, even though they are not needed. A second difference is that typical DW queries are not very restrictive; they process large amounts of data, using a WHERE clause that selects millions of rows or even no WHERE clause at all, and then use aggregates to trim the result set to something a human can peruse
+
+
+
+
+two types
+a. clustered
+b. non-clustered: in sql 2012, only non-clustered are available
+
+shortcomings
+a. outer join can be slow in 2012, because outer join is not an operator supported by batch mode. But in 2014, it is not a problem
+b. bad for OLTP, row by row based operatoin
+c. the expensive process required to build the index
+d. structure does not lend itself to updates
+e. restricted dml
+
+
+row-oriented storage
+-ideal for OLTP workloads. if you want instert a record, only 1 page is affected.
+-queries that are selective enough only touch one or two pages(assuming properly indexed)
+
+
+
+when to use column-store
+a. when you often select only a subset of columns, and when the table has many column
+b. when your where clause is not very selective, when you are is not aimed at searching for only a few rows
+
+rowgroups and segments
+segment elimination
+-That is because SQL Server, in the metadata for each individual segment, keeps track of the minimum and maximum of all the values stored in that segment
+
+compression
+
+dictionaries
+For a column with colors, the dictionary would, for instance, contain a list of the value pairs (Black, 1); (Red, 2); (Green, 3); (Mauve, 4)
