@@ -1,0 +1,682 @@
+ju1. 7 types of constrains (among which 4 key constraints)
+--primary key
+--unique key
+--foreigh key
+--surrogate key
+--check
+--default
+--Not null 
+
+2. 4 types of relations
+--1 to many
+--1 to fix cardinality
+--1 to 1
+--many to many
+
+3. cardinality and degree
+-- the cardinality in a relationship the maximum number of record alowded in a child table per instance patental
+-- degree is the number of entities in a relationship
+
+4. degree -> unary, binary, ternary
+
+-- unary is a relation between instances of the same table. for example, we have employee, manger relationship, since
+   all mangers must be employee, we can represent this relation in one talbe.We can make a foreigh key that point the
+   primary key of the same table if we assume one manager can manage,multple employee and one emplyee can only have one manager
+   in this case, we have a one to many unary relationship
+-- binary is a ralationship between instances of two table. It's very common relationship. for example,suppose we have
+   two table, emplyee and phonenumber, if one employee are alow to report multiple phone numbers, then we have a very 
+   common 1 to many binary relationship
+-- ternary is a simutanouly relationsip between instance of three table. we have three entity, shipper, product, warhouse
+   a common trastaction is on certain date, a shipper ships a kind product to a warehouse
+
+5. 3 types of functional dependence
+
+--functional dependence: if we have two attribute, a and b. if we know the value of attribute a, then we can figure the 
+  the attribute of b, we say a dertermin b and b is functional dependent on a
+
+--full functional dependence: suppose we have attribute a, b, c, if the conbination of a, b can determin c and neither a
+  or b indibidually can determine c, we can say c is full dependent on the combination of a and b
+--partial dependence: suppose we have compsote attribte that contains attribute a and b, if we find a could determin the value
+  of attriute c, and then we can say c is partial depentent on our composte attribute which consiste of a and b
+--transitional dependence
+
+6. Normalization -> 1nf,2nf,3nf, bcnf
+
+--Normalizetion a step by step process in database design, in order to avioud update, delete, intert anormly and save
+  memory
+--1nf: must have key attribute, single valued, no composte attribute, and must be some dependence between the key attribute
+  and not key attribute
+--2nf: all non-key attributes must be fully functional dependent on the key attribute
+--3nf: there should be no non-key attributes that is transision dependent on key attribute
+
+
+
+7. Date modelling process
+-conceptual design, logical design, physical design
+
+8. JRD vs JAD
+
+9. Agile vs Waterfall
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------
+1. DDL,DML,DQL
+DDL: create, add, drop, alter
+DML: update, delete, insert
+DQL: select
+
+--DDL is short data definition language. It is used to define and modify the data structure of datebase. 
+  Commmon ddl are create, add, drop and alter. For example, we use create to create a new table,along with 
+  the data type of each column. we can use add constraint to assign a constraint on a column
+
+--DML is short for data manipulation language, DML is used to manipulation data in database. The most common DML are 
+  update, delete, insert. For example, we can used update to modify a row in a table, if we don't want a records 
+  anymore, we can remove using delete
+
+--DQL is short for data query lauguage. DQL is used to query a database, in order to retrieve relevent info. 
+  Select the most important DQL command. The standard squence of a query start with select, followed by from, 
+  where, group by, having, order by
+
+
+2. transactions, apply DDL and DML
+
+create table {table name} ()
+alter
+
+
+3. truncate vs delete
+-- first all, delete can be used to remove a certain row in a table, however, if we applied truncate to a table,
+   what will happen is all the rows will be removed together, and we will end up with an empty table
+-- secondly, there is a major diffence in terms of logfile. for delete, all the rows that are deleted will be stored
+   logfile. However, the data affect by truncate will no be written into the logfile. Due to this fact, we can not 
+   roll back truncate but we can roll back delete action. All due to this fact, truncate normally faster than delete,
+   since it don't have to send data to long file
+-- Anoter intersting difference is that truncate will reset a identity column to it's inital value while delete will
+   not do this
+-- and by the way, delete is a dml and truncate is ddl
+
+
+ 
+4, like operater
+
+like operate is used in case we don't not want exact match. We want to return the data that maches cetain patterns.
+For example, we want to find the employee whose last name start with a, a as in apple. There are some wildcard charactor
+that help us to form certain patters. For example, % means any string of zero or more charactors, 
+a underscore means any single charactor, a square bracket means any single charactor within the specified range
+ 
+
+4.system function 
+
+--getdate(), date and time 
+--dateadd(), detepart()
+--cast()  change data type
+--convert()
+--year(), month(), day(), datediff()
+--substring()
+--ltrim(), rtrim()
+--stuff()
+
+5.
+--charindex()
+--isnull()
+
+5. convert vs cast
+--Both can be used to change the date type of expession. in addtion to change datatype, 
+  convert can also be used to format date into certain style, for we can change a date format into the
+  US standard mm/dd/year by specifiing 105 in the convert function
+
+  
+6. select top ten/ and other key word to 
+
+
+
+7. on delete cascade/on update cascade. how to turn it on 
+
+--on delete cascade can be used to maintain referential integrity. Because of foreign key constraint,
+  before deleting a records in parent table, all the instances in child table that points to that
+  record should be deleted first. On delete cascade helps to delete those associated instances automatically. 
+  This helps to save time in case we have multiple tables point to the same parent table. 
+  However, on delete cascade can be dangerous. The data deleted in child table by on delete cascade 
+  will not be stored in log file, meaning that we can’t not recover this deleted records. 
+  [on delete cascade] can only be turned on when creating foreign keys.
+  if the foreign key is already there, it has to be dropped and then recreated. 
+
+
+8. where vs. having
+
+-- What is the difference between where and having?
+--1. where is used to filter data on non aggregate function, while having is used to filter aggregate function
+--2. where is applied before group by, but having is applied after group by
+--3. if you are using having, you must group by, having can only be used after group by
+--4. having is slower comparie to
+
+--both are used to filter data, but having works with aggregete function,and where works don't work with aggragation 
+  function. Having can only be used right after a group by clause, so if there is no group by, we can't use having
+  on the othe hand, where clause appears before group by clause.
+
+
+9. aggregate function rules of use
+
+--1. if you have a non aggregate column, along with an agregate function, in the select predicates, then all the 
+--non aggregate column must be the part of group by clause
+--2. all the columns included in the grouping predicates may or may not be in the select predicates
+--3. if you are using having clause, you must use group by 
+--4. if you are using group by clause, you may or may not using a having cluse
+
+
+--The basic rule is that the non aggreglete columns in select predicates must be subset of columns in group by clause .
+  for example, a valid query is select column a from table group by column a,  if there are multiple rows has same department
+  then the group by clause will fold them in one row to form a group, when we select one addtion column say age,sql server 
+  will not know what to do with that column, say the sales department has several employee, thus the sales deparment are
+  associate with mulptple age, in this case, we don't know which age should be assign the sales department
+
+ 
+
+9.  aggregete function vs select distint
+--
+
+10. aggregte function vs. normal system func
+--some common aggregete functions are max(), min(), avg(),sum(), count()
+  the reason it is called aggregate function because it take multiple values in a column as inpute,for example,
+  the sum function will add up all the values in a column, the max function will compare all the value in a column and 
+  find the maximum value. On the other hand, non aggregate function 
+
+11. sequence of commond followed by progrmming vs follwed by sql server, tempdb
+
+/* sequency of commands to followed by programmers
+select
+from 
+where
+group by
+having
+order by
+
+
+real sequence in sql server
+from -> 
+where ->
+select -> (tempdb, for temperary operation) ->
+group by ->
+having ->
+order by 
+
+12. rules
+rules, one step higher, database level
+--multi table level check constraints
+
+--rules can be seen as multi-table level constraints. for example if we have several columns that has the same constraints, 
+  rather than create the same constrint one by one, we can create a rule and bind that rule to the columns we want to 
+  make constraint.
+
+13. sp_bindrule 
+
+14. [JIAHE-PC].AdventureWorks2012.HumanResources.Employee 
+
+three part naming convention---in three part, in order to refer to a table, we spectify the 
+database name, schema, and then the table name. it has better performace since it clearly species the
+locaton of the server
+
+
+15. Select into
+
+--select into,  key constraint will not be copied, only column constraints
+select [BusinessEntityID],[JobTitle],[Gender]
+into employeenew
+from AdventureWorks2012.HumanResources.employee 
+where 1=0 --just to create data structure
+
+
+
+16. joins
+There are phisycally 3 type of join, inner joiner, outer join and cross join
+inner join: inner join returns the all the matched rows from both table base on joinning column
+outer join: left outer join, rignt outer join, full outer join (logically, add restricted)
+--left outer join, gives the all the matched rows from both table and all the umatched rows from left table,
+  based on the joinning column
+--full outer join, gives all the matched rows as well as the umatched rows from both table
+cross join: returns all possible combination of rows between two table, if we have one table has 10 rows and another
+  has 20, we will end up with 200 row by cross join 
+self join(logical)
+tab1	tab2
+2	3
+3 	4
+
+inner join 
+3	3
+left outer join
+3	3
+2	null
+right outer join
+3	3
+null	4
+full ourter join
+3	3
+2	null
+null	4
+
+
+
+
+17 derived table
+
+18 self join
+
+
+19 subquery
+-- subquery is query structure where one query is nested with another. There are two type of subquerys. nesed query
+   and derived query. if inner query can excute alone, the this is nested query. if the inner query is refercing 
+   outer query, then it's corelated subquery
+nested query
+derived query
+
+20. set operator
+union, union all 
+intersect
+except
+rules
+
+-- at least two select statement to use a set
+-- the number of columns in the first select statement must be exactly same as the 
+   the number of culumns in the second statement 
+-- datatype match
+
+21.expalin difference, join vs. subquery vs. set operator,   advantage and disadvantage
+
+join vs. subquery
+-- all the id of employee who are sales person
+
+--def: join combines columns from two table base on a joining column, for example, inner join
+  returns the matched row from both table based on joining column. subquery on the other hand, 
+  is a query stucture that has one query nexted in another 
+--some times a task can be done with either join or subquery, suppose we have two table, employee table
+  and sales person table, in employee table, the columns are employID,  salary, in sale person table, there are 
+  sales person ID as well as store, 
+--although they some time can deliver the same result. but there are some signnifcant diffenret. a subquery normlly can 
+  only return column in one table, however, join can pull columns from multiple columns.
+--a subquery can only have 32 layers but you can join as many tables as you want.
+--in terms of performance, join is much better, for nested joing, the outer join can start only after the inner 
+  join complete, thus may lead long excution time. co-related join may be worse since the query join the depend on 
+  on outer query. it can be as slow as a cartisian product
+--But the good thing of subquery is it's very intuitve, easy to write and easy to understand
+
+
+22. Ranking functions
+row_number()
+rank(), dense_rank(),
+nitile(<n>)
+
+--rules to use 
+
+23. essence of subquery
+
+subquery in select, from, where clause
+--in select: 
+
+24.temperary tables
+1. local
+2. global
+
+
+25. instance, connection, session
+
+26. views
+a database object, virtual table, a stored query, whose sturture
+is defined by underlying select statement, is mainly used for date encryption on column and row of base table
+
+
+27
+
+
+---group mock  Jun 6
+1. join
+2. join subquery 
+3. restricted full outer join    is null on joinnig colunn in both table,  where a.id is null or b.id is null
+4. join vs subquery
+5. limitation on subquery
+6. diffrent type of subquery, two types, example
+7. set operator(intersect, union, except)
+8. rules of using set operator 3rules
+
+9. ranking function vs aggregate func
+--ranking function, return a ranking value for each row in a partition
+1. every ranking function must have an over clause
+2. over clause must be followed by order by clause
+3. ranking function may or may not have partition by clause 
+
+select dense_rank()over(order by salary desc) rank, *
+
+10. aggregate function  a chunck of data
+11. group by definition: if we apply group by to a column, it will group all recoreds based on value in that column. 
+    in this use, aggrege function can be apply to one or more column to order generate summary statistics for each group
+
+-- 
+12. where and having
+
+
+
+13  order of select
+
+
+14  derived table def, scope  --derived, from clause, query bound
+
+15  local temperate table, global temperatale,  can create primary key
+    -- a temperate is a table that will not be permantely store in a database.
+       for a temp table, once the session create the table is ended, the temp table will be deleted automatically
+    -- 2 types of temp,  local vs glocal
+    -- a local can be only used the session that created it
+    -- a gobal can be used in other sessions of the same connection, given the session creates the table is alive 
+    -- one can create a any type constrain on a tem but not referencital integrity. We can't have a foreign key point to the primary key of perman
+
+14. view, 32 -> subquery
+
+   
+15. purpose of views   data encryplaion?
+16. delete and truncate   trigger?
+
+----------------------------------------------------------------------------------------------------------starting from Jun 6
+
+28. views
+--a data base object which are virtual table, whose structure is defined by the underlying
+  select statement, and is mainly used for data enscryption on rows and column of the base table
+
+--3 types of views, regular, schemabind, indexed
+       --regular: for a regular you, you are free to make any ddl changes on the underlying table
+         for a regular view, compute by clause, selet into and hint are not allowed. Order by clause can be use unless it is use with top clause
+         And must refer to a permanent database object
+       --schema binding: for such a view, you can't perform any ddl changes on the column of underlying table that the view is refering to. 
+         when creatung such view, table name should follwer two naming convention or 3 part. we can's use select *, we have to specify the column names explicitly
+       --indexed: a view that has unique clustered index on any potential primary key column of a chemabind view. To create indexed view, you need first to create it
+         as a schemabinding view, then assign an UCI to the schemabinding view.
+         When you create UCI on any candidate column of a schemabinding view all the corresponding 
+         data from the underlying base table is copied and duplicted in the view sturcture and hence indexed view no long
+         qulifies to be a virtual table(it is treated as a actual physical table). IN this case, any dml operation will work on both indexed view and the basetable
+         Essentially, we are creating multple uniqute cluster key on a dataset for optimization purpose
+
+--with encrytion, prevent user from assessing the source code that create the view  sp_helptesx\
+--DML operations: Any DML Operations on Views are nothing but DML operations on underlying table via view 
+--with check option: restrict all the data manipulation operson agiat a view to the part of data specify by the where clause of the query defines the view
+
+
+29. DCL(data control language)
+--is a set of clauses that can be used control a users' access to different database objects
+--Grant, Revoke, Deny, Grant with grant
+--Grant {permissions} on {table name} to {user name}
+--permission: select, update, delete, intert 
+
+30. Dynamic SQL --the code/script can work a dataset based on some dynamic variable whoes value is supplied by 
+                  ront-end applications
+    
+    Varibles
+
+
+30. Table Variable
+--a variable that stores table in form of row and columns
+--it stores in ram, thus operation performce of this table is better than a normal table, since the data is alreay
+  in ram. But we can't have a very large table variable since it would block fram and drag down the performance of 
+  other operations.if the size of the table increase to some extent, sql server will automatical;y store part of the 
+  date on temdb, which is in harddrive
+--The same as other variables, we need to declare it, and this table is batch, one the batch is excuted, the table is gone
+--we can perfom dml,dql operations but since its essential temperary, batch bound, we can not maintain referencial integrity
+
+
+31  Dyanmic Sql Advantage and disadvantages
+--pros: it work with variables, thus we can reuse the code from time to time. we don't have to rewritte the query
+  if the variable value supplied by front end application changes, the result will change accordingly.it also come with
+  more flexibily, for user can specify which column to select, the query will change on the fly.
+--cons: potential injection attacks since the query executed is also depend on the parameter passed 
+  from the front end application. The query is in the control of frond end users. for example, a hacker may able to 
+  imanging the query sturcture behind and inject some special charactors that has special meaning in sql, to order to 
+  break the code.
+    
+
+32. While loop
+-- while loop is  primarily used to loop through a table on row-by-row basis
+-- in order to use while loop, the table must have to a numerical column, and that column should have some patter,
+   it can't be just random
+
+while <condition>
+begin
+	  <any sql statement>
+end
+
+33.
+
+/*-- Difference between following
+                          SCOPE                             STORAGE        OPERATION
+	 1.permenant tables  (perm,                    )        hd				ALL	
+	 2.views             (perm                     )		hd				ALL
+	 3.derived table     (temp query bound,        )		hd-tempdb		DQL
+	 4.local temp        (temp session bound,      )		hd-tempdb		ALL	
+	 5.global temp       (temp cross session bound )		hd-tempdb		ALL
+	 6.Table variables   (batch                    )		ram				DML,DQL
+
+	in terms of 
+	Scope, Performance, Application, pros-cons, operations and usage 
+
+	a. all tables and views support DQL, all tables and views support DML except Derived table
+	b. all permanent object(perm table, views) support all operation(DQL, DML, DDL, DCL)
+	c. all tables the are essentially temporary don't not support referential integrity constrain and DCL
+	d. for local and global temp, they support everything but referential integrity and DCL
+	e. a derived table is just used for query purpose in from clause, just active with the query
+	f. table variable is created using declare, so no DDL
+*/
+
+34. Case Statement
+--it is like switch...case statement in most of the programming lauguages
+--compares an expression to a set of simple expressions to determine the result.
+  				@cityvalue= Case @IDValue
+					        when 1 then 'ny'
+						when 2 then 'sd'
+						when 3 then 'la'
+						when 4 then 'dl'
+						else '  '
+					        end
+--in sql, a case statement don't have a begin, but must be a end at the end of the statement
+
+
+35. IF else statement
+--if statement imposes conditions on the execution of a statement 
+if <condition>
+ begin
+	...
+ end
+ else if <condition>
+    ...
+ else 
+
+36. Case vs IF
+-very similar, they both will evaluate a condition. Some task can either be done in case or if.
+ case can be potential faster then if else, it will directory jump to match expression and determine the value
+ on the if else will compare the condion step by step. But we view case as a subset of if, if is more powerful
+ and flexible, basic every thing we can do with case we can also do it with if else
+-squencial vs referential
+
+37. Explain types of integrity on database
+
+----------------------------------------------------------for 7/12 mock
+38. computed column
+--a computed column that is permantly stored in that table
+--example
+--will automatically change is the function defines it changes
+
+
+39. CTE(common table expressions)
+--CTE is a temperary named result, Which is determind by the underlying select statement.
+  is similar to view,one can perform dml changes to base table through cte. 
+  but different from view it is temp. it's temperory become it only works with the single query that come immdiately after it.
+  once that single query is executed, CTE is gone. 
+--2 types of CTE, Regular CTE and Recurssive CTE. 
+  - if a cte don't references to itself , then it's regular. Regular CTE is frequently used when we want to perform
+    some operation on based table through CTE. For example, if we are to delete the duplicate rows in a table, with CTE, we can first attached a row_number for the rows in each partition, and 
+    delete from cte where row_num is greater than 1. in this way, the duplicated column in based table is drop and the CTE will also be dropped atomatically
+  - IF a cte include reference to itself, then it becomes a recurrsive
+--Recurrsive CTE contains a anchor member and recurrence member that refers to itself
+  plus a union all statement that connect these two members. it maily work with hirachical date, for example, if manager
+  empoyee unary relationship, we can return a level for each employee by join recurrsively using CTE
+
+----sytax of recurrsive
+with DirectReports
+as 
+(
+--anchor
+select EID, 0 as level
+from emp
+where MID is null
+
+union all
+
+--recurrence 
+select e.EID, d.level+1
+from DirectReports as d
+inner join emp as e
+on d.eid=e.MID
+)
+select * from DirectReports order by level
+
+40. Stored procedres, a database object
+--def: are nothing but a pre compiled series of sql statements that can be reused again and again. 
+  it can accept and return multiple parameters
+  when a stored procedure is created, all sql statement that are part of the stored procedure
+  is compiled,  excution plan will be cached, which will be followd by futher excution 
+
+create proc p1(@var int, @var1 varchar(100)....)
+as 
+begin
+	 ....
+end
+
+exec p1 10,'Peter'
+
+41. pros and cons of stores procedure
+--Advantages: 
+1.[cathed plan]the biggest advantage is that it enable faster performace, in each execution, the database engine will 
+  follow the cached  excecution plan directly, there is no need to go through the compiler and query obtimizer all 
+  over again this time.
+2.[dsql]a stored procedure can contain dsql.it can input and output multiple variables, which will make the procedure
+   more reusable and flexible
+3.[network traffic]When a stored procedure is called, only the procedure called and its parameter are sent to the server, rather than the
+  lenthy source code it contains, in this way, it reduced network traffic
+4.[Increased data security]:  Stored procedure also helps to increase data security. just grant permission on the stored procedures, rather than grant direct assess the data
+
+
+-- 2. use all type of tables
+-- 3. can return many outputs
+-- 4. can take multiple inputs
+-- 5. can have default parameter
+-- 6. use DSQL 
+-- 7. Can have nested procedure, recommended
+-- 8. recurrsive procedure--cancell mannully
+-- 9. reduce network tradffic???? 
+
+--Disadvantages
+-- 1. [no table variable out put]can't return table variable as out put variable, since table variables are readonly
+      in procedure.
+-- 2. cannot be called from select statement, must exec, only whay to exec procedure
+-- 3. the cached the exec plan may be outdated and even break as the date base structure changes 
+      over time. A best plan today is not necessary the best plan a month later, thus should be recompiled from time to time,
+
+
+41. types of stored procedures
+
+--user-defined, as it's name suggest it is define by users. a user can specify input parameter, output parater as well 
+  the default value for a input parameter
+	
+--system 
+  sp_bindrule
+  sp_unbindrule
+  sp_executesql
+  sp_helptext 
+--*extened sp
+--*CLR(common lauguage runtime)
+
+
+42. 3 step of query exculation
+1. Parser & Compiler  -->> intermidiate files, not binary
+   - parser :  the parser checks for correct syntax, including the correct spelling and use of keywords.
+   - complier : analyze semantic of the tokens in a query, it translate the meaning and logic 
+     of a query into intermidia files that can can be analyzed by query optimizer
+
+2. query optimizer    -->> exec plan, a step by step plan that the server follws internally to execute this query
+   - it is binary, machine can under stand
+   - base on the intermidiate file from complier, the query optimizer generate the best possible exec plan, which is
+     a step by step process the the database engine follows internally. The output of query optimzer are binary, so that 
+     machine can understand
+     
+3. sql server db engine
+   - excute the query according the the execution plan provided by query optimizer
+
+43. note on sp
+* return statement is optional in the store procedure, but when used, can return only integers
+* --?
+
+44. 3 ways to RE-complie Store procedure
+1. alter, in the development process
+2. using system stored procedure(sp_recompile)
+   -- this will mark a procedure for recompile, next time the procedure was executed, it will be re-compiled
+3. using with recompile option
+   -- if we use recompile option with a exection, the procedre will be recompile immdiately 
+
+45. error handling
+
+A group of Transact-SQL statements can be enclosed in a TRY block. If an error occurs in the TRY block,
+ control is passed to another group of statements that is enclosed in a CATCH block. in the catch block, we can
+ specify the message we want to print out. or we can use the raiseerror function to specify the messige along with the 
+ severity number and flag. 
+
+--process of handlng run time error
+--TRY...CATCH blocks
+--ERROR_MESSAGE()
+--raiserror (@errmsg, 11,1)
+--@@error
+
+--raiserror
+--severity no 0-11: informational message
+--severity no 11-20: critical errors
+--no 20-24  system critical errors
+--flag  1 to front end, 0 in server
+
+
+--insert update delete anormally
+this ususally hanppens when the table is is not normalized. 
+suppose we student table that contains studnet info(like id, name,major) as well the cousres he take, including the course name, course schedule. In this case, since there is no seperate course table, insert anormaly happens when a new course needs to be inserted that is not registered by a student.Update anomaly can happen when course name is updated in one row only for math, say math to linear algebra, all the record with math have to updated.Delete anomaly c
+
+
+-----------------------------------------------------------------------------------------------------7.13 mock
+1. what is error handling, what is try catch
+2. diffrence between table variable and temp table
+   a. scope
+   b. ddl
+   c. constraint
+   d. storage 
+   
+
+--
+1.In functions it is only possible to use a table variable
+2.if you need to write to the table in a child scope then only a #temp table will do (table valued parameters allow readonly access). 
+  Table-valued parameters must be passed as input READONLY parameters to Transact-SQL routines. 
+  You cannot perform DML operations such as UPDATE, DELETE, or INSERT on a table variable in the body of a routine.
+3.Table variables don't participate in transactions, logging or locking. This means they're faster as they don't require the overhead, 
+  but conversely you don't get those features. So for instance if you want to ROLLBACK midway through a procedure then table variables 
+  populated during that transaction will still be populated!
+4.You can create a temp table using SELECT INTO, which can be quicker to write (good for ad-hoc querying) and 
+  may allow you to deal with changing datatypes over time, since you don't need to define your temp table structure upfront.
+5.In case you want table variable output, You can pass table variables back from functions, enabling you to encapsulate and reuse logic much easier
+6 Using Table Variables within user-defined functions enables those functions to be used more widely.
+  If you're writing a function you should use table variables over temp tables unless there's a compelling need otherwise.
+7.If you need an index that cannot be created implicitly through a UNIQUE or PRIMARY KEY constraint then you need a #temporary table as it is not possible 
+  to create these on table variables. (Examples of such indexes are non unique ones, filtered indexes or indexes with INCLUDEd columns). 
+  NB: SQL Server 2014 will allow non unique indexes to be declared inline for table variables.
+
+In general, table variable works well with function, it is not a good choice in stored procedure since it is read only in procedure
+temp table has more functionality than table variable, such as indexes(other then primary key and unique key), rollback, select into
+
+student take couses table
+
+
+
+
+
+
