@@ -140,7 +140,7 @@ a underscore means any single charactor, a square bracket means any single chara
   record should be deleted first. On delete cascade helps to delete those associated instances automatically. 
   This helps to save time in case we have multiple tables point to the same parent table. 
   However, on delete cascade can be dangerous. The data deleted in child table by on delete cascade 
-  will not be stored in log file, meaning that we can’t not recover this deleted records. 
+  will not be stored in log file, meaning that we canâ€™t not recover this deleted records. 
   [on delete cascade] can only be turned on when creating foreign keys.
   if the foreign key is already there, it has to be dropped and then recreated. 
 
@@ -641,7 +641,11 @@ A group of Transact-SQL statements can be enclosed in a TRY block. If an error o
 
 --insert update delete anormally
 this ususally hanppens when the table is is not normalized. 
-suppose we student table that contains studnet info(like id, name,major) as well the cousres he take, including the course name, course schedule. In this case, since there is no seperate course table, insert anormaly happens when a new course needs to be inserted that is not registered by a student.Update anomaly can happen when course name is updated in one row only for math, say math to linear algebra, all the record with math have to updated.Delete anomaly c
+suppose we student table that contains studnet info(like id, name,major) as well the cousres he take, 
+including the course name, course schedule. In this case, since there is no seperate course table, 
+-insert anormaly happens when a new course needs to be inserted that is not registered by a student.
+-Update anomaly can happen when course name is updated in one row only for math, say math to linear algebra, all the record with math have to updated.
+-Delete anomaly comes when you delete a cause
 
 
 -----------------------------------------------------------------------------------------------------7.13 mock
@@ -654,7 +658,7 @@ suppose we student table that contains studnet info(like id, name,major) as well
    
 
 --
-1.In functions it is only possible to use a table variable
+1.In functions it is only possible to use a table variable, can not work with temp table
 2.if you need to write to the table in a child scope then only a #temp table will do (table valued parameters allow readonly access). 
   Table-valued parameters must be passed as input READONLY parameters to Transact-SQL routines. 
   You cannot perform DML operations such as UPDATE, DELETE, or INSERT on a table variable in the body of a routine.
