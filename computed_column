@@ -3,3 +3,4 @@ a. virtural column, base on exising columns
 b. calculated only when queried
 c. can be physically stored when 'Persisted'
 d. only after 'Persisted' and the fomula is deterministic, index can be created on the column
+e. will change accordingly when dependent column changes
