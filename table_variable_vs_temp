@@ -1,0 +1,12 @@
+table variable, cte, tempt table
+
+-lifetime
+table variable is batch bound
+cte only works with the query immediately follows
+tempt table is session bound
+
+-transaction
+For this reason a ROLLBACK command will affect a #temp table but leave the @table_variable untouched.
+
+-statistics
+columns statistics is maintained on temp table, but not table variable
