@@ -1,1 +1,59 @@
+CONFIGURATION
+config for package deployment model
+a. XML, SQL server table, Parent package variable, system environment variable, register entry
+b. package configuration wizard
 
+config for project deployment model
+a. parameterization, Master-Child packages,SSIS catelog environment
+
+
+DEPLOYMENT
+a. package deployment model
+-unit of deployment: a package
+-destination: File System or MSDB
+-configuration: configuration files(.dtsConfig)
+-manifest file
+-CreateDeploymentUtility need to set to TRUE
+
+b. project deployment model(introduced in SSIS 2012, utilize SSISDB catelog, a sign of integreated SSIS to sql server)
+-unit of deployment: a project
+-destination: SSISDB(a db on the server), a central repo 
+-Configuration: environment variable
+-Create a SSISDB catelog first if not exist, build(will generate .ispac file)
+
+c. incremental package deployment(introduced in SSIS 2016)
+- deploy one or more packages without deploying the whole project
+
+
+ERROR HANDLEING
+a. control flow level
+- on failure precedence constraint
+- event handler: On failure, On Error
+b. data flow level
+- error output: ignore, fail component, redirect rows
+
+LOGGING
+a. build in logging providers
+-text files, xml files, sql server table, sql profiler(.trc), windows event log
+b. event handler
+-comment event: on pre-execution, on post-execution, on fail, on error
+-customized logging: eg. execute sql task to wrap up stored procedure to logging into db
+c. SSISDB catelog(for packages run through SSISDB catelog, log to sql server)
+-for a given package, the logging level incl: none/basic(default)/verbose + Performance(for performance related statistics)
+
+
+
+SSISDB & SSISDB catalog
+ON SQL SERVER 2012 or later version
+you will see a node 'Integreation Services Catelogs' when you login to database engine.
+To deploy with project deployment mode, you will need to create a SSIS catelog first
+When it is created, you will found two new item
+- a database named 'SSISDB' under database node, this will be like a central repo for your packages(incl. packages, parameters, permission...)
+- a catelog name 'SSISDB' under note integration server catelogs, this is the so called 'SSIS catelog'
+SSISDB catelog = catelog 'SSISDB'under node Integration Services Catelogs
+
+
+
+
+Execution
+dtExec
