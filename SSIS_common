@@ -1,0 +1,31 @@
+frequently used tasks
+
+a. data profile task
+b. execute sql task
+c. execute package task
+d. script task
+f. data flow task
+
+
+container
+
+a. for loop container
+b. for each loop container
+c. sequence container
+
+
+At data flow level
+(source and dest)
+a. OLDEB source and destination
+b. flat file
+c. excel
+
+(transformations)
+a. conditional spilt
+b. lookup
+c. SCD
+d. Fuzzy lookup & Fuzzy group
+
+
+
+
