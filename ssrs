@@ -1,0 +1,22 @@
+SSRS
+
+configuration
+report manager
+
+Row group
+-visibility(hide, display can be toggled by item)
+  -drill down
+-page break
+-sorting
+-
+
+Test Box property
+-alignment
+-front
+-Action(Important)
+-interactive sorting
+
+Actions
+-Go to report
+-Go to bookmark
+-Go to URL
