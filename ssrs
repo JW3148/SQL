@@ -20,3 +20,14 @@ Actions
 -Go to report
 -Go to bookmark
 -Go to URL
+
+Tablix vs. Matrix
+Tablix only row group 
+
+Parameters
+-prompt
+-data type
+-allow null/blank/multi-value
+-visibility: visible, invisible(drill trough), internal(user has not vis or control, can't not (change)call by another report at run time, can only change by developer)
+-available values: none(usr input), specify values, from query; value and label
+-default values
