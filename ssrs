@@ -31,3 +31,15 @@ Parameters
 -visibility: visible, invisible(drill trough), internal(user has not vis or control, can't not (change)call by another report at run time, can only change by developer)
 -available values: none(usr input), specify values, from query; value and label
 -default values
+
+Cascading Parameter
+-eg. country,state,city
+-step1 define parameter P_country,P_state,P_city by dataset(query), without building any dependence
+-step2 Embed dependence, add where clause to the query that defines state(where country=@P_country) and city(where country=@P_country and state=@P_state)
+
+Issue with mult-selection 
+-in query, need to change to use 'in'
+-in stored procedure, 
+  -input variable can only be scalar variable--> need to combine the array to a string (use join function in SSRS, at parameter mapping property of dataset, with expression)
+  -inside the stored procedure, the query will be"in"-->need to convert it to back to array, user defined function to do this
+
