@@ -43,3 +43,25 @@ Issue with mult-selection
   -input variable can only be scalar variable--> need to combine the array to a string (use join function in SSRS, at parameter mapping property of dataset, with expression)
   -inside the stored procedure, the query will be"in"-->need to convert it to back to array, user defined function to do this
 
+Subscription
+-Schedule
+-email/file system/
+-standard vs. data driven(stores preference for each user in a table in db)
+
+Parameter in dataset vs Filter
+-cache
+-parameter(filter done in DB engine), Filter(filter done in report server)
+
+Admin
+-Princeple, Role, Permission
+-serveral default roles
+
+Prcessing Option
+-Always run with most recent data(diffrent cache options: a. expire cache every 30 min; b.expire cache on specified schedule )
+-Rendering from a snapshot(historical report)
+
+Pre-condition for snapshot and subscription
+-SQL Agent
+-No user profile
+-stored credential
+
