@@ -74,3 +74,12 @@ Report Type
 -bookmark, document map(index, set up on row group)
 -Viz(chart,sparkline,databar, indicator)
 -chart(value(y), catagory groups(x), series groups(z, another category, say..make a line chart with multiple lines)
+
+-Issue with rendering
+The common rendering problem happen when we want to export report as PDF file, Excel file or CSV file.  
+- For PDF file, sometimes we may find unexpected blank pages after export. The problem is as a result of the unused white space in the design page. 
+The solution is to compress page items, and set the propery ConsumeContainerWhiteSpace as True. 
+- For Excel, we may find merged cells in the exported file. This is not good for many excel functions. Such as pivot table.  
+A solution is to try to move header to align with the cell or table. 
+- For CSV file, we may find that it displays the textbox number instead of column name. 
+To solve this, we need to change the name property of textbox to column name
