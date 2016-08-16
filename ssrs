@@ -65,3 +65,12 @@ Pre-condition for snapshot and subscription
 -No user profile
 -stored credential
 
+Report Type
+-standard
+-parameterized
+-drill down(row group, invisiable, toggle by parent 
+-drill through(go to report, parameter mapping)
+-sub-report
+-bookmark, document map(index, set up on row group)
+-Viz(chart,sparkline,databar, indicator)
+-chart(value(y), catagory groups(x), series groups(z, another category, say..make a line chart with multiple lines)
