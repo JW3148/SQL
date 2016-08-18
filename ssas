@@ -1,0 +1,22 @@
+Data source
+-just a connect to database
+
+Data source view(DSV)
+- the data source view contains a set of tables or views, and defines the relationships among them. 
+- Each DSV is usually built around a business topic, and contains any tables related to that topic
+- DSV is very useful by letting you augment the schema, through Named Query and Named Calculation
+- For example, you can add calculated column to DSV when you can't make the actuarial change on physical table in db
+
+
+Manipulate data in DSV(Named query and Named calculation)
+
+Named query in DSV
+- creates a new logical table in DSV, or replace an existing table. 
+- A fully select statement
+
+Named calculation in DSV
+- add a computed column in DSV table
+
+Dimension
+- Hierachiy
+- Attribute relationship
