@@ -1,0 +1,21 @@
+Power Query
+- connect to sql server
+- establish dimesnion model
+- define hierachy
+- create pivot table and pivot chart by connecting to the data model created in power query
+
+DAX:
+-Row level
+-Table level
+=if(sumx(RELATEDTABLE(Sales),Sales[TotalDue])=BLANK(), 0, sumx(RELATEDTABLE(Sales),Sales[TotalDue]))
+
+
+
+question: how many gold medals china have in last olympic, by the end of day 10
+YTD: so far by now this year, what's the accumulate figure number for this year? e.g. what is accumulated sales so far?
+QTD: so far by now this quarter, quarter bound, each quarter is a new start
+MTD: so far by now this month ...
+
+FiscalYTD:=TOTALYTD(sum([TotalDue]),'Date'[Date],ALL(DATE),"6/30")
+
+Don't support roll playing dimension
