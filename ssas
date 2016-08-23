@@ -17,6 +17,26 @@ Named query in DSV
 Named calculation in DSV
 - add a computed column in DSV table
 
-Dimension
-- Hierachiy
-- Attribute relationship
+Dimension(Cube)
+- Hierachiy(Balanced, Unblanced, Ragged):
+  Balanced or not: if each branch contains the same number of levels
+  Ragged or not: if for level, the parent leval comes from the level that is immediatelly above it(no level skip)
+- Attribute relationship(flexible vs rigid) - relationship betwwn a pair of columns
+  Flexible: eg. Actuarial Developmetn Group move from Act to IT, company re-organize
+  Rigit: date dimension
+  
+Measure
+- like a column in fact table
+- like a fact table
+- numberical
+
+Dimension Usage/Dimension relationship(defines how cube dimensions are used within each measure group)
+- relation between measure group and dimension
+- regular: normal one to many relationship. PK, FK(dimension and fact relation)
+- referenced: dimension A,B and Fact. chained 1-many(B-->A-->fact)
+- fact: degenarated dimension, eg: reciept number
+- many to many: eg. bank transaction[fact],account[dim],customer[dim], assume a regular relation between DimAccount and FactTrans,
+  however, there is a many to many relationship between dimAcccount and dimCustomer, then you will have many to many betwenn FactTrans
+  and dimCustomer[this basically mean a cu
+
+
