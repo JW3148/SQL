@@ -19,3 +19,5 @@ MTD: so far by now this month ...
 FiscalYTD:=TOTALYTD(sum([TotalDue]),'Date'[Date],ALL(DATE),"6/30")
 
 Don't support roll playing dimension
+
+Power View
