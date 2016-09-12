@@ -24,6 +24,31 @@ b. project deployment model(introduced in SSIS 2012, utilize SSISDB catelog, a s
 c. incremental package deployment(introduced in SSIS 2016)
 - deploy one or more packages without deploying the whole project
 
+Security
+-protection level: by default, encrypt sensitive with user key
+-target: all(whole package), sensitive(e.g. passwords)
+-option: don't save sensitive, protect with user key, protect with password
+
+-encrypt all with user key
+  only the person who developed the pkg/project can open
+  typical for single use mode, can't share
+  
+-encrypt sensitive with user key(default, commonly used one)
+  only the person who developed the pkg/project have access to sensitive
+  general user will lose sensitive
+  if there is no sensitive data(which is the common case), then this open don't have any protection
+
+-encrypt sensitive with password: 
+  project protect level must be also changed to sensitive with password. they have to be consistent
+  when open project -->prompt password, for sensitive data; open without password will lose sensitive data --> once in project, no password required for package
+  when open package(not from project)--> prompt for password; open without password will lose sensitive data
+  
+-encrypt all with password:
+  project protect level must be consitent
+  when open project --> prompt for password --> once in project, no need to enter password to package
+  when open package(not from project) --> prompt for password 
+
+
 
 ERROR HANDLEING
 a. control flow level
