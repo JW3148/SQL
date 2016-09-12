@@ -1,16 +1,28 @@
+Environment
+Visual Studio 2010
+SQL Server 2012
+
+
 frequently used tasks
 
-a. data profile task
-b. execute sql task
-c. execute package task
-d. script task
-f. data flow task
+a. data profile task - to give you better under standing of the data
+    CASE: Pre-ETL, Pre-design table, 
+      -candidate key/column length dist/column value dist/column null ratio/
+b. execute sql task - tool to speak to(run query) SQL server directly
+    CASE: Stored procedres(e.g. for logging), truncate table before loading
+c. execute package task - tool to provide structure
+    CASE: Master Child Package, pass parameter/variable from Parent to parameters in child
+d. script task - customized transformation
+    CASE: Get data frow webservice
+f. data flow task  --most frequently used, for ETL
+g. file system task -tool to speak to OS file system
 
 
 container
 
 a. for loop container
 b. for each loop container
+    CASE: Load each files in a folder(DFT for ETL); for each file, after loading, archive to another folder(Fire System Task)
 c. sequence container
 
 
@@ -19,8 +31,20 @@ At data flow level
 a. OLDEB source and destination
 b. flat file
 c. excel
+    CASE:
+    load excel 97-2003 use Excel source and connect manager. Configure the project to run with 32 bit runtime
+Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\jwang\Downloads\test1.xls;Extended Properties="Excel 8.0;HDR=YES";    
+    load excel 2007 or later, use Excel source and connect manager, in addition, you need to have Access DB engine; May still need 32bit run time(depending on the driver you installed)
+Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\compliance_stg\Compl_Log_2016_08_08.xlsx;Extended Properties="EXCEL 12.0 XML;HDR=YES";
+    b4 2007 and after 2007 are using difference providers
+
 
 (transformations)
+a. derived column
+    CASE: add a new column, computed column; replace a column(e.g. trim trailing zero for a column)
+    Define by expression
+b. aggregation
+b. data conversion 
 a. conditional spilt
 b. lookup
 c. SCD
