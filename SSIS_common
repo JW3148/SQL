@@ -50,6 +50,7 @@ b. lookup
 c. SCD
 d. Fuzzy lookup & Fuzzy group
 
-
-
+CASES
+It turned out any records that contain 'xp_cmdshell' can not be copied… 
+I replace them to 'xp_cmd_shell' by copy a query and changed  them back at the destination.
 
