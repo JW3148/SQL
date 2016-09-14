@@ -1,0 +1,63 @@
+SDLC
+ Agile vs. Waterfall
+ Testing(regression, unit, system..)
+
+SQL
+  SQL Server, Oracle
+  stored procedures
+  tuning
+  data modeling, ERD, Normalization, conceptual&logic&physical design...
+  XML, HTML, JSON sometimes preferred
+
+DBA knowledge
+  backup restore(full, diff, log)
+  HA
+  Access/Permission
+
+ETL
+  SSIS - etl, audit control and scheduling
+  informatica
+  transformation
+  FTP client
+  
+Data Warehouse
+  dimensional modeling
+  star schema
+
+Reporting
+  SSRS, Cognos
+  PowerBI
+  Tableau
+  Excel - Pivot table, charting, calculations..
+
+Cube
+  SSAS
+  
+DOS, Perl and Unix shell script
+
+Service supoort operation knowledge
+  SLA
+  Severity
+
+Python
+  numpy
+  pandas
+
+NoSQL
+  Cansandra
+  ...
+
+big data analytics
+  hadoop
+  spark
+  
+Cloud
+  AWS redshift
+  
+statistics
+  R programming - data manipulation
+  regression
+  stat testing, e.g.ANOVA
+  A/B test
+  data mining
+  
