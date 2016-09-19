@@ -1,0 +1,13 @@
+RECOMPILE Query Hint
+  The hint is included in Transact-SQL statements in the procedure
+
+sp_recompile System Stored Procedure
+  This does not execute the procedure but it does mark the procedure to be recompiled 
+  so that its query plan is updated the next time that the procedure is executed
+
+WITH RECOMPILE Option
+  CREATE PROCEDURE dbo.uspProductByVendor @Name varchar(30) = '%'  
+  WITH RECOMPILE  
+  or
+  EXECUTE HumanResources.uspGetAllEmployees WITH RECOMPILE;  
+  
