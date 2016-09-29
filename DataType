@@ -1,0 +1,5 @@
+decimal(5,2)
+
+5 -- maximum 5 digits
+2 -- 2 digit aflter decimal
+5-2 =3 --maximum 3 digit before decimal
