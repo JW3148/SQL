@@ -33,3 +33,10 @@ Types of Attribute
 simple vs composite
 single-valued vs. multi-valued
 Derived attribute --e.g. age
+
+Normalizaion
+
+suppose you have a claim transaction table. you have 3 busness key, combine them you can uniquely determine each transaction.
+say one of the key attribute is claimnumber, it can uniquely determine policy number, which is another attribute.
+The key attribute -which combines 3 busness key - will not fully funtional determine policy number. in this case, it is not in 2nf
+to make it 2nf, create a seperate table for claimnumber and policy and reletied infomations
