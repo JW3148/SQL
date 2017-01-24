@@ -26,3 +26,10 @@ Physical Design
 For example, different DBMS's have different names for datatypes and have different datatypes.
 - SQL are written. The idexes, the integrity constraints (rules) and the users' access rights are defined.
 - Finally the data to test the database is added in.
+
+
+Types of Attribute
+
+simple vs composite
+single-valued vs. multi-valued
+Derived attribute --e.g. age
