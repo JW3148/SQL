@@ -1,0 +1,16 @@
+SQL Server's views are updateable, but it is possible that when you insert a new record or update an existing record, the record added or modified doesn't logical belog to the view any longer. For example, consider the following view:
+CREATE VIEW authors_CA AS
+    ( 
+        SELECT * FROM Authors WHERE state='CA'
+    )
+If you now issue the following command:
+UPDATE authors_CA SET state='NJ'
+then all the records visible in the view are updated with a differente State value, and therefore would disappear from the view itself. This is perfectly legal, but can create subtle programming errors. You can avoid this problem by adding the WITH CHECK OPTION predicate when you create the view:
+CREATE VIEW authors_CA AS
+    ( 
+        SELECT * FROM Authors WHERE state='CA'
+    )
+    WITH CHECK OPTION
+Now any insert or update operation that makes a record disappear from the view raises a trappable runtime error.
+
+ The WITH CHECK OPTION clause prevents you from updating or inserting rows that are not visible through the view. In other words, whenever you update or insert a row of the base table through a view, MySQL ensures that the insert or update operation is conformed with the definition of the view.
