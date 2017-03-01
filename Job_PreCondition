@@ -1,0 +1,16 @@
+DECLARE @dbState TINYINT;
+SELECT @dbState = state FROM sys.databases WHERE name = N'dbname';
+IF @dbState = 0
+BEGIN
+  RAISERROR('Database is online.', 11, 1);
+END
+Set the properties of step 1 to be:
+
+on success, go to step 2
+on failure, go to step N
+Step 2 -> n-1 would do their normal things. Step n-1 might quit the job with success on success, or move to step N on success.
+
+Step N could be as simple as:
+
+PRINT 1;
+...and would be set to quit the job with success.
