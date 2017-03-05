@@ -1,0 +1,35 @@
+SET QUOTED_IDENTIFIER ON
+
+GO
+
+IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'usp_xxx')
+	DROP PROCEDURE dbo.xxx
+
+GO
+-- =============================================
+-- Author:		
+-- Create date: 
+-- Description:	
+-- =============================================
+CREATE PROCEDURE usp_FICOH_PQI_Step_02b_Earned_Premium_Detail	
+AS
+BEGIN
+	SET NOCOUNT ON;
+	DECLARE @ProcNamE AS VARCHAR(100)= OBJECT_NAME(@@PROCID);
+	DECLARE @Msg AS VARCHAR(4000) = NULL;
+-- 
+    BEGIN TRY
+		EXEC usp_DE_Step_X_Update_Log @ProcNamE, 'Procedure Started.';
+--
+
+--
+		EXEC usp_DE_Step_X_Update_Log @ProcNamE, 'Procedure Completed.';
+	END TRY
+-- 	
+	BEGIN CATCH
+		SET @Msg = ERROR_MESSAGE();
+		EXEC usp_DE_Step_X_Update_Log @ProcNamE, @Msg;
+	END CATCH
+-- 	
+END
+GO
