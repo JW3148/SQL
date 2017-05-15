@@ -28,3 +28,10 @@ Isolate applications from sources
 - also more flexibilty when you want only a subset of data for testing purpose
 
 Table Compression
+
+
+Temp table vs subquery
+-it can be faster if you change subquery to use a temp table, as temp table has statitcs and thus provide more info to the
+query optimizer
+-and also indexing the temp table.
+-but creating temp table can take time, addition I/O
