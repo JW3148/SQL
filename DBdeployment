@@ -1,0 +1,8 @@
+db deployment
+
+add not null column
+CREATE TABLE testDF (
+a int not null constraint DF_a_0 default(0),
+b int
+)
+alter table testDF drop constraint DF_a_0
