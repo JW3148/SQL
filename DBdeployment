@@ -6,3 +6,11 @@ a int not null constraint DF_a_0 default(0),
 b int
 )
 alter table testDF drop constraint DF_a_0
+
+
+ALTER TABLE [dbo].[tbname]
+    ADD [colname] INT NOT NULL
+	CONSTRAINT constraintname DEFAULT 1
+
+ALTER TABLE [dbo].[tbname]
+DROP CONSTRAINT constraintname 
