@@ -1,0 +1,62 @@
+http://www.databasejournal.com/features/mssql/article.php/3664696/Using-and-Managing-Database-Mail.htm
+https://aws.amazon.com/blogs/ses/using-microsoft-sql-server-2008-r2-with-amazon-ses/
+
+--1. check if a)mail service broker & b)Database Mail XPs are enabled
+SELECT is_broker_enabled FROM sys.databases WHERE name = 'msdb'; --is_broker_enabled:1
+SELECT * FROM  sys.configurations WHERE name = 'Database Mail XPs' --value_in_use:1
+
+--2. Enable DB Mail XPs if it is not enabled, use master db
+/*
+USE MASTER
+GO
+sp_configure 'show advanced options', 1;
+GO
+RECONFIGURE;
+GO
+sp_configure 'Database Mail XPs', 1;
+GO
+RECONFIGURE
+GO
+*/
+
+--3. Configure a profile(which is a collection of accounts)
+
+EXECUTE msdb.dbo.sysmail_add_profile_sp
+    @profile_name = 'Amazon SES SMTP Profile',
+    @description = 'Mail Profile for use by DBA processes';
+
+--4. Add SMTP account to the profile created
+DECLARE @displayname VARCHAR(30)
+DECLARE @emailaddress VARCHAR(128)
+SET @displayname= Cast(Serverproperty('ServerName') AS varchar(30))
+PRINT @displayname
+
+EXECUTE msdb.dbo.sysmail_add_account_sp
+    @account_name = 'Database Administration Account',
+    @description = 'Mail account for used by DBA staff',
+    @email_address = 'SQLSERVER@orgname.com',
+    @display_name = @displayname,
+    @replyto_address = 'DONOTREPLY@orgname.com',
+    @mailserver_name = 'xxx.com',
+	@port=587,
+	@enable_ssl=1,
+	@username='youremail',
+	@password='Emailid password'
+
+
+--5. Add the account to the profile
+EXECUTE msdb.dbo.sysmail_add_profileaccount_sp
+    @profile_name = 'Amazon SES SMTP Profile',
+    @account_name = 'Database Administration Account',
+    @sequence_number =1 ;
+
+
+--6. Make the profile Private or Public. To use private the user need to be:sysadmin members OR msdb databasemailuserrole members
+EXECUTE msdb.dbo.sysmail_add_principalprofile_sp
+@profile_name = 'Amazon SES SMTP Profile',
+@principal_id = 0,
+@is_default = 1 ;
+
+
+--7. Set up system parameters, update the LoggingLevel to Verbose
+EXEC msdb.dbo.sysmail_configure_sp 'LoggingLevel', '3';
