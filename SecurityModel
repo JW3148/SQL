@@ -1,0 +1,25 @@
+http://www.databasejournal.com/features/mssql/article.php/3713116/SQL-Server-Security-Model.htm
+This is summarized from SQL Server Security Model By Gregory A. Larsen
+
+Authentification
+Window
+  domain window account: defined to Active Directory
+  domain window group: unique name you define to Active Directory, can have members
+  local window account: defined to the local machine for local Windows accounts
+  local window group
+SQL SERVER --defined only within SQL Server. Not known to the AD
+
+
+Login
+Window Login: define window account in AD or local machine and then create SQL server login
+SQL server login: directly create in sql server as a SQL server account
+
+Associating Permissions to Login
+  Server lever rights - by assocate Login to a server wide role
+    -8 server roles with different rights
+    -can not add own custom server wide role
+  Database Access
+    -for a login to perform T-SQL statements against a database, they need to be given access to that database.
+    -When a login is granted access to a database, a user within the database is identified and created.
+    -Granting a login access to a database doesn’t give them any access to objects within a database
+    -Still need to grant rights specifically to db user, or add db user to a member of a role
